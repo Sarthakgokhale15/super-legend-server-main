@@ -11,6 +11,11 @@ const corsOptions = {
   };
 router.use(cors(corsOptions));
 const {google}=require("googleapis");
+
+router.post("/test",async(req,res)=>{
+    res.send("post working");
+})
+
 router.post("/user",async(req,res)=>{
 
     const auth=new google.auth.GoogleAuth({
