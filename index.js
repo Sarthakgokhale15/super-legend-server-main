@@ -13,10 +13,10 @@ app.use(router);
 app.use(express.urlencoded({ extended: true }));
 
 const corsOptions = {
-    origin: "http://localhost:3000",
+    // origin: "http://localhost:3000",
 
     // allow from anywhere
-//     origin: "*",
+    origin: "*",
   };
 app.use(cors(corsOptions));
 require('dotenv').config();
