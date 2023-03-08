@@ -48,12 +48,18 @@ router.post("/user",async(req,res)=>{
 
     console.log(req.body.body);
 
-    const payload=[[req.body.body.childName,req.body.body.Age,req.body.body.gender,req.body.body.parentName,req.body.body.category1,req.body.body.category2,req.body.body.category3,req.body.body.ContactNumber,req.body.body.location,req.body.body.jcaId,req.body.body.jcaIdNumber,req.body.body.mentorName]];
+    const payload=[[req.body.body.childName,req.body.body.Age,req.body.body.gender,req.body.body.parentName,req.body.body.category1,req.body.body.category2,req.body.body.category3,req.body.body.ContactNumber,req.body.body.location,req.body.body.JcaMember]];
 
 
-
-
-
+    if(payload[0][0]=='' || payload[0][1]=='' || payload[0][2]=='' || payload[0][3]==''|| payload [0][7]=='' || payload[0][8]=='' || payload[0][7].length!=10){
+        res.status(404).send('Data Not Stored');
+        return;
+    }
+    if(payload[0][4]==false && payload[0][5]==false && payload[0][6]==false){
+        res.status(404).send('Data Not Stored');
+        return;
+    }
+    else{
         const row=await googleSheets.spreadsheets.values.append({
             auth,
             spreadsheetId,
@@ -66,6 +72,11 @@ router.post("/user",async(req,res)=>{
     
         })
         res.send(row.data);
+    }
+
+
+
+       
    
    
     
