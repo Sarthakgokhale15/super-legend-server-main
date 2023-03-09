@@ -48,10 +48,14 @@ router.post("/user",async(req,res)=>{
 
     console.log(req.body.body);
 
-    const payload=[[req.body.body.childName,req.body.body.Age,req.body.body.gender,req.body.body.parentName,req.body.body.category1,req.body.body.category2,req.body.body.category3,req.body.body.ContactNumber,req.body.body.location,req.body.body.JcaMember]];
+    const payload=[[req.body.body.childName,req.body.body.Age,req.body.body.gender,req.body.body.parentName,req.body.body.category1,req.body.body.category2,req.body.body.category3,req.body.body.ContactNumber,req.body.body.location,req.body.body.JcaMember,req.body.body.cat1,req.body.body.cat2,req.body.body.cat3,req.body.body.cat4,req.body.body.cat5,req.body.body.cat6,req.body.body.cat7,req.body.body.cat8,req.body.body.cat9,req.body.body.cat10]];
+    
+    if(payload[0][4]==true && payload[0][9]==''){
+        res.status(404).send('Data Not Stored');
+        return ;
+    }
 
-
-    if(payload[0][0]=='' || payload[0][1]=='' || payload[0][2]=='' || payload[0][3]==''|| payload [0][7]=='' || payload[0][8]=='' || payload[0][7].length!=10){
+    if(payload[0][0]=='' || payload[0][1]=='' || payload[0][2]=='' || payload[0][3]==''|| payload [0][7]=='' || payload[0][8]=='' || payload[0][7].length!=10 ){
         res.status(404).send('Data Not Stored');
         return;
     }
