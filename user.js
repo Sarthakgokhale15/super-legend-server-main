@@ -39,6 +39,29 @@ async function getAuthSheets(){
         auth,client,googleSheets,spreadsheetId
     }
 }
+
+
+router.post("/partner",async(req,res)=>{
+    const {auth,googleSheets}=await getAuthSheets();
+    spreadsheetId="1H1Pe4i7LabkBbOPv8j99FvFpeXJSld887ywj1r7HdGU";
+
+    // console.log(req.body);
+    const payload=[req.body.body];
+    console.log(payload);
+     const row=await googleSheets.spreadsheets.values.append({
+            auth,
+            spreadsheetId,
+            range:"Sheet1!A:B",
+            valueInputOption:"USER_ENTERED",
+            resource:{
+                values:payload,
+            }
+    
+    
+        })
+        res.send(row.data);
+
+});
 router.post("/user",async(req,res)=>{
     const {auth,googleSheets,spreadsheetId}=await getAuthSheets();
     
@@ -86,4 +109,6 @@ router.post("/user",async(req,res)=>{
     
 
 });
+
+
 module.exports=router
