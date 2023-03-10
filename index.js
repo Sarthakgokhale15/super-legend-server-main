@@ -8,7 +8,7 @@ const { query } = require("express");
 const router=require("./user");
 const app =express();
 app.use(express.json());
-
+var PORT = process.env.PORT || 3003;
 app.use(router);
 app.use(express.urlencoded({ extended: true }));
 
@@ -25,4 +25,4 @@ app.get("/",async (req,res)=>{
     res.send("API Working");
 });
 
-app.listen(3001,(req,res)=>console.log("running on port 3001"))
+app.listen(PORT,(req,res)=>console.log(`running on port ${PORT}`))
