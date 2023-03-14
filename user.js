@@ -165,7 +165,7 @@ router.post("/user",async(req,res)=>{
       }
 
         transporter.sendMail(message).then((info)=>{
-             res.status(201).json({
+             return res.status(201).json({
                 msg:"email sent!",
                 info:info.messageId,
                 preview:nodemailer.getTestMessageUrl(info)
