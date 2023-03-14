@@ -62,7 +62,7 @@ router.post("/partner",async(req,res)=>{
     
     
         })
-        return res.status(201);
+       res.status(201).send(row.data);
 
 });
 router.post("/user",async(req,res)=>{
